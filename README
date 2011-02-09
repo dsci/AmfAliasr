@@ -1,0 +1,27 @@
+AmfAliasr
+=========
+
+If you're using RubyAMF to act with a FLEX application and you want to use some ruby methods attached to your model in your FLEX application
+you have to define a useless setter methods every time. Also, since in ActionScript there is no support for boolean methods. 
+
+Be lazy, use AmfAliasr to take care about that. 
+
+Example
+=======
+
+class Person < ActiveRecord::Base
+
+  amf_alias :full_name, :is_overage?
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
+  def is_overage?
+    self.age > 18 unless self.age.nil?
+  end
+
+end
+
+
+Copyright (c) 2011 Daniel Schmidt, released under the MIT license
