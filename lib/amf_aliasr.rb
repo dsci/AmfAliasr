@@ -13,7 +13,8 @@ module AmfAliasr
         #puts "a is #{a} #{[a.length-1,a.length-1]}"
         meth_name = a[a.length-1,a.length-1].include?("?") ? a.chop : a
         #puts meth_name
-        unless self.methods.include?(meth_name)
+        unless self.respond_to?(meth_name)
+          #puts "not responding to meth"
           define_method(meth_name.to_sym) do
               self.send(meth.to_sym)
           end
